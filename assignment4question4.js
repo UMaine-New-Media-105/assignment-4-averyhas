@@ -5,6 +5,7 @@ function setup() {
   createCanvas(960, 540);
   noLoop();
 
+  // Array which holds each planet in order from closest to farthest from the Sun.
   planets = ["mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune"
   ];
   tilesPerRow = 8; // planets.length
@@ -16,17 +17,21 @@ function setup() {
 function draw() {
   background("midnightblue");
 
+  // Draws rows + columns.
   for(let rowsDrawn = 0; rowsDrawn < tilesPerColumn; rowsDrawn++){
   for(let columnsDrawn = 0; columnsDrawn < tilesPerRow; columnsDrawn++) {
+    
+  // Gives the planets a revolving pattern.
     let thisPlanet = planets[(columnsDrawn + rowsDrawn)  % planets.length]
-    let thisX = columnsDrawn * tileWidth;
-    let thisY = rowsDrawn * tileHeight
-    addPlanet(thisPlanet, thisX + 15, thisY + 55)
+    let planetX = columnsDrawn * tileWidth;
+    let planetY = rowsDrawn * tileHeight
+    addPlanet(thisPlanet, planetX + 15, planetY + 55)
     }
   }
 
 }
 
+// Function which harbors the instructions to draw each planet w/ its corresponding ellipse size + color.
 function addPlanet(planet, x, y) {
   push();
   translate(x, y);
